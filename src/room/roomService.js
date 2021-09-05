@@ -30,8 +30,8 @@ const roomService = {
   },
 
   setAll: async (roomId, settings) => {
-    console.log(settings);
-    for (const setting of settings) {
+    for (const key in settings) {
+      const setting = settings[key];
       if (!storage.isSettingValid(setting)) {
         logger.critical("invalid setting", { setting });
         throw new Error("Invalid settings");
