@@ -31,9 +31,9 @@ const roomService = {
 
   setAll: async (roomId, settings) => {
     for (const key in settings) {
-      const setting = settings[key];
-      if (!roomService.isSettingValid(setting)) {
-        logger.critical("invalid setting", { setting });
+      const value = settings[key];
+      if (!roomService.isSettingValid({ key, value })) {
+        logger.critical("invalid setting", { value });
         throw new Error("Invalid settings");
       }
     }
@@ -41,17 +41,17 @@ const roomService = {
     return await storage.setSettings(roomId, settings);
   },
 
-  set: async (roomId, setting) => {
-    if (!roomService.isSettingValid(setting)) {
-      logger.critical("invalid setting", { setting });
+  set: async (roomId, key, value) => {
+    if (!roomService.isSettingValid({ key, value })) {
+      logger.critical("invalid setting", { key, value });
       throw new Error("Invalid settings");
     }
 
-    return await storage.setSetting(roomId, setting);
+    return await storage.setSetting(roomId, key, value);
   },
 
-  isSettingValid: (setting) => {
-    return settingKeys.includes(setting.key) && validator[key](setting.value);
+  isSettingValid: ({ key, value }) => {
+    return settingKeys.includes(key) && validator[key](value);
   },
 };
 

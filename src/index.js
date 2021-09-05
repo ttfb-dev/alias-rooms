@@ -56,7 +56,7 @@ app.post("/room/:room_id/setting/:key", async (req, res) => {
   const key = req.params.key;
   const value = req.body;
   try {
-    await roomService.set(roomId, { key, value });
+    await roomService.set(roomId, key, value);
     res.status(200);
   } catch (e) {
     logger.critical(e.message, { path: `/room/${roomId}/setting/${key}` });

@@ -26,8 +26,9 @@ export const storage = {
 
   setSettings: async (roomId, settings) => {
     const currSettings = await this.getSettings(roomId);
-    for (const setting of settings) {
-      currSettings[setting.key] = setting.value;
+    for (const key in settings) {
+      const value = settings[key];
+      currSettings[key] = value;
     }
 
     await prs.setRoomParam(roomId, storageKeys.settings, currSettings);
