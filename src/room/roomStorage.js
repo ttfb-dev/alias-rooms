@@ -4,13 +4,24 @@ const storageKeys = {
   settings: "settings",
 };
 
+const defaultValues = {
+  name: "",
+  lang: "",
+  stepDuration: 60,
+  pointsToWin: 60,
+};
+
 export const storage = {
   getSetting: async (roomId, key) => {
-    return await storage.getSettings(roomId)[key];
+    return (await storage.getSettings(roomId)[key]) ?? defaultValues[key];
   },
 
   getSettings: async (roomId) => {
-    return await prs.getRoomParam(roomId, storageKeys.settings, {});
+    return await prs.getRoomParam(
+      roomId,
+      storageKeys.settings,
+      defaultSettings
+    );
   },
 
   setSetting: async (roomId, key, value) => {
