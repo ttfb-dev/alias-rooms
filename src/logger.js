@@ -1,5 +1,5 @@
-import { Logger } from '@ttfb/aliasgame';
+import { Logger } from "@ttfb/aliasgame";
 const host = process.env.LOGGER_HOST;
-const logger = new Logger(host, 'datasets');
+const logger = new Logger(host, "rooms");
 
 export default logger;
