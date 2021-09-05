@@ -44,7 +44,7 @@ app.post("/room/:room_id/settings", async (req, res) => {
   const settings = req.body;
   try {
     await roomService.setAll(roomId, settings);
-    res.status(200);
+    res.status(200).send();
   } catch (e) {
     logger.critical(e.message, { path: `/room/${roomId}/settings` });
     res.status(400).send();
@@ -57,7 +57,7 @@ app.post("/room/:room_id/setting/:key", async (req, res) => {
   const value = req.body;
   try {
     await roomService.set(roomId, key, value);
-    res.status(200);
+    res.status(200).send();
   } catch (e) {
     logger.critical(e.message, { path: `/room/${roomId}/setting/${key}` });
     res.status(400).send();
