@@ -21,11 +21,13 @@ export const storage = {
   },
 
   setSetting: async (roomId, key, value) => {
-    return await storage.setSetting(roomId, [{ key, value }]);
+    const setting = {};
+    setting[key] = value;
+    return await storage.setSettings(roomId, setting);
   },
 
   setSettings: async (roomId, settings) => {
-    const currSettings = await this.getSettings(roomId);
+    const currSettings = await storage.getSettings(roomId);
     for (const key in settings) {
       const value = settings[key];
       currSettings[key] = value;
