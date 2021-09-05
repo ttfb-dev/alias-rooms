@@ -1,0 +1,16 @@
+version: "3.6"
+
+networks:
+  default:
+    external:
+      name: network
+
+services:
+  rooms-nodejs:
+    container_name: rooms-nodejs
+    build:
+      context: .
+      dockerfile: ./build/nodejs/Dockerfile
+    restart: "no"
+    image: registry.gitlab.com/aliasgame/rooms:node_14
+    env_file: ./build/.env.list

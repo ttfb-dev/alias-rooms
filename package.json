@@ -1,0 +1,16 @@
+{
+  "name": "rooms",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "git@gitlab.com:aliasgame/words.git",
+  "author": "bobrov@ttfb.dev",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@ttfb/aliasgame": "^0.0.53",
+    "express": "^4.17.1"
+  }
+}
