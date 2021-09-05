@@ -1,10 +1,20 @@
 import express from "express";
-import roomService from "./room/roomService.js";
+import roomService, { defaultSettings } from "./room/roomService.js";
 import logger from "./logger.js";
 
 const app = express();
 const port = 80;
 app.use(express.json());
+
+app.get("/room/:room_id/settings/default", async (req, res) => {
+  const roomId = req.params.room_id;
+  try {
+    res.status(200).json(defaultSettings);
+  } catch (e) {
+    logger.critical(e.message, { path: `/room/${roomId}/settings/default` });
+    res.status(400).send();
+  }
+});
 
 app.get("/room/:room_id/settings", async (req, res) => {
   const roomId = req.params.room_id;

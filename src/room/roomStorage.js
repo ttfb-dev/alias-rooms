@@ -4,7 +4,7 @@ const storageKeys = {
   settings: "settings",
 };
 
-const defaultValues = {
+export const defaultValues = {
   name: "",
   lang: "",
   stepDuration: 60,

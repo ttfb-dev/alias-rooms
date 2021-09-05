@@ -1,7 +1,9 @@
-import { storage } from "./roomStorage.js";
+import { storage, defaultValues } from "./roomStorage.js";
 import logger from "../logger.js";
 
-export const settingKeys = ["name", "lang", "stepDuration", "pointsToWin"];
+const settingKeys = ["name", "lang", "stepDuration", "pointsToWin"];
+
+export const defaultSettings = defaultValues;
 
 const validator = {
   name: (name) => {
