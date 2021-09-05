@@ -17,11 +17,7 @@ export const storage = {
   },
 
   getSettings: async (roomId) => {
-    return await prs.getRoomParam(
-      roomId,
-      storageKeys.settings,
-      defaultSettings
-    );
+    return await prs.getRoomParam(roomId, storageKeys.settings, defaultValues);
   },
 
   setSetting: async (roomId, key, value) => {
