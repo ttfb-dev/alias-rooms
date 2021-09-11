@@ -42,7 +42,6 @@ app.get("/room/:room_id/setting/:key", async (req, res) => {
 app.post("/room/:room_id/settings", async (req, res) => {
   const roomId = req.params.room_id;
   const settings = req.body;
-  console.log(roomId, settings);
   try {
     await roomService.setAll(roomId, settings);
     res.status(200).send();
