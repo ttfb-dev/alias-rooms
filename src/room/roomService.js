@@ -6,7 +6,7 @@ const settingKeys = [
   "lang",
   "stepDuration",
   "pointsToWin",
-  "takeOffPoint",
+  "takeOffScore",
 ];
 
 export const defaultSettings = defaultValues;
@@ -24,7 +24,7 @@ const validator = {
   pointsToWin: (points) => {
     return typeof points === "number" && points <= 90 && points >= 30;
   },
-  takeOffPoint: (value) => {
+  takeOffScore: (value) => {
     return typeof value === "boolean";
   },
 };
@@ -42,8 +42,8 @@ const roomService = {
     for (const key in settings) {
       const value = settings[key];
       if (!roomService.isSettingValid({ key, value })) {
-        logger.critical("invalid setting", { value });
-        throw new Error("Invalid settings");
+        logger.critical("invalid setting", { key, value });
+        delete settings[key];
       }
     }
 

@@ -9,7 +9,7 @@ export const defaultValues = {
   lang: "",
   stepDuration: 60,
   pointsToWin: 60,
-  takeOffPoint: true,
+  takeOffScore: true,
 };
 
 export const storage = {
