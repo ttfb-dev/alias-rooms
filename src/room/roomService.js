@@ -6,6 +6,7 @@ const settingKeys = [
   "lang",
   "stepDuration",
   "scoreToWin",
+  "pointsToWin",
   "takeOffScore",
 ];
 
@@ -22,6 +23,9 @@ const validator = {
     return typeof duration === "number" && duration <= 90 && duration >= 30;
   },
   scoreToWin: (points) => {
+    return typeof points === "number" && points <= 90 && points >= 30;
+  },
+  pointsToWin: (points) => {
     return typeof points === "number" && points <= 90 && points >= 30;
   },
   takeOffScore: (value) => {
