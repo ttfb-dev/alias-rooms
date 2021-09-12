@@ -9,6 +9,7 @@ export const defaultValues = {
   lang: "",
   stepDuration: 60,
   pointsToWin: 60,
+  takeOffPoint: true,
 };
 
 export const storage = {
@@ -17,7 +18,13 @@ export const storage = {
   },
 
   getSettings: async (roomId) => {
-    return await prs.getRoomParam(roomId, storageKeys.settings, defaultValues);
+    const settings = await prs.getRoomParam(
+      roomId,
+      storageKeys.settings,
+      defaultValues
+    );
+
+    return storage.fillWithMissSettings(settings);
   },
 
   setSetting: async (roomId, key, value) => {
@@ -28,11 +35,12 @@ export const storage = {
 
   setSettings: async (roomId, settings) => {
     const currSettings = await storage.getSettings(roomId);
-    for (const key in settings) {
-      const value = settings[key];
-      currSettings[key] = value;
-    }
+    const newSettings = { ...currSettings, ...settings };
 
-    await prs.setRoomParam(roomId, storageKeys.settings, currSettings);
+    await prs.setRoomParam(roomId, storageKeys.settings, newSettings);
+  },
+
+  fillWithMissSettings: (settings) => {
+    return { ...defaultValues, ...settings };
   },
 };

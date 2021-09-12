@@ -1,7 +1,13 @@
 import { storage, defaultValues } from "./roomStorage.js";
 import logger from "../logger.js";
 
-const settingKeys = ["name", "lang", "stepDuration", "pointsToWin"];
+const settingKeys = [
+  "name",
+  "lang",
+  "stepDuration",
+  "pointsToWin",
+  "takeOffPoint",
+];
 
 export const defaultSettings = defaultValues;
 
@@ -17,6 +23,9 @@ const validator = {
   },
   pointsToWin: (points) => {
     return typeof points === "number" && points <= 90 && points >= 30;
+  },
+  takeOffPoint: (value) => {
+    return typeof value === "boolean";
   },
 };
 
